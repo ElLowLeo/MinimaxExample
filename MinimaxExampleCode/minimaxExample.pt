@@ -1,0 +1,90 @@
+# Este código foi desenvolvido com base na versão original em Python. 
+# Peço desculpas por qualquer erro de digitação ou falta de coesão que possa ter ocorrido. 
+# Fiz várias revisões no código e tenho quase certeza de que está sem erros.
+# Porém, caso identifique alguma falha, reporte-a.
+
+função avaliarTabuleiro(tabuleiro):
+
+    combinaçõesVencedoras = [ # Todas as formas possíveis de vencer no jogo da velha
+        [0, 1, 2], [3, 4, 5], [6, 7, 8],  # Linhas
+        [0, 3, 6], [1, 4, 7], [2, 5, 8],  # Colunas
+        [0, 4, 8], [2, 4, 6]             # Diagonais
+    ]
+    # Por exemplo
+    # [0, 1, 2]
+    # Significa:
+    # X | X | X
+    # ---------
+    #   |   | 
+    # ---------
+    #   |   | 
+    # Pois:
+    # 0 | 1 | 2
+    # ---------
+    # 3 | 4 | 5
+    # ---------
+    # 6 | 7 | 8
+
+    para cada combinação em combinaçõesVencedoras:
+        se tabuleiro[combinação[0]] == tabuleiro[combinação[1]] == tabuleiro[combinação[2]] != "":
+            se tabuleiro[combinação[0]] == "X":
+                retorne 10
+            senão, se tabuleiro[combinação[0]] == "O":
+                retorne -10
+
+    se "" não está em tabuleiro:
+        retorne 0  # Empate
+    retorne Nulo  # Jogo não terminou
+
+função minimax(tabuleiro, profundidade, estáMaximizando):
+    se profundidade == 0 ou avaliarTabuleiro(tabuleiro) não é Nulo:
+        retorne avaliarTabuleiro(tabuleiro)
+
+    se estáMaximizando:
+        maxEval = -infinito
+        para cada posição de 0 até 8:
+            se tabuleiro[posição] == "":
+                tabuleiro[posição] = "X"
+                avaliação = minimax(tabuleiro, profundidade - 1, Falso)
+                maxEval = máximo(maxEval, avaliação)
+                tabuleiro[posição] = ""
+        retorne maxEval
+    senão:
+        minEval = infinito
+        para cada posição de 0 até 8:
+            se tabuleiro[posição] == "":
+                tabuleiro[posição] = "O"
+                avaliação = minimax(tabuleiro, profundidade - 1, Verdadeiro)
+                minEval = mínimo(minEval, avaliação)
+                tabuleiro[posição] = ""
+        retorne minEval
+
+função encontrarMelhorJogada(tabuleiro):
+    melhorAvaliação = -infinito
+    melhorJogada = Nulo
+    para cada posição de 0 até 8:
+        se tabuleiro[posição] == "":
+            tabuleiro[posição] = "X"
+            avaliaçãoJogada = minimax(tabuleiro, 9, Falso)
+            tabuleiro[posição] = ""
+            se avaliaçãoJogada > melhorAvaliação:
+                melhorAvaliação = avaliaçãoJogada
+                melhorJogada = posição
+    retorne melhorJogada
+
+função imprimirTabuleiro(tabuleiro):
+    para cada linha de 0 até 9, passo 3:
+        imprima(junte-se(tabuleiro[linha:linha+3], " | "))
+        se linha < 6:
+            imprima("-" * 9)
+
+função principal(): # É a primeira função a ser iniciada
+    tabuleiroInicial = ["X", "X", "O", "O", "O", "X", "X", "", ""]
+    imprima("Tabuleiro inicial:")
+    imprimirTabuleiro(tabuleiroInicial)
+
+    melhorJogadaÍndice = encontrarMelhorJogada(tabuleiroInicial)
+    tabuleiroInicial[melhorJogadaÍndice] = "X"
+
+    imprima("Tabuleiro após a melhor jogada:")
+    imprimirTabuleiro(tabuleiroInicial)
