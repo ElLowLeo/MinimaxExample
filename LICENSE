@@ -1,41 +1,21 @@
-from termcolor import colored
-import re
+MIT License
 
-def highlight_comment(comment):
-    parts = comment.split('#', 1)
-    if len(parts) == 2:
-        return colored('#', 'dark_grey') + colored(parts[1], 'dark_grey')
-    return comment
+Copyright (c) 2023 Leonardo Rodrigues
 
-def syntax_highlight(code):
-    highlighted_code = ""
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-    for line in code.split('\n'):
-        
-        line_without_comment = line.split('#', 1)[0]
-            
-        highlighted_line = re.sub(r'\b(função|se|senão|para cada|enquanto|retorne|Nulo|Verdadeiro|Falso)\b', 
-                                      lambda m: colored(m.group(), 'light_cyan'), line_without_comment)
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-        highlighted_line = highlighted_line.replace(
-            'infinito', colored('infinito', 'magenta')
-        )
-            
-        highlighted_line = re.sub(r'"[^"]*"', lambda m: colored(m.group(), 'light_green'), highlighted_line)
-        highlighted_line = re.sub(r"'[^']*'", lambda m: colored(m.group(), 'light_green'), highlighted_line)
-            
-        if '"""' in line:
-            in_multiline_comment = not in_multiline_comment
-            
-        highlighted_line = line.replace(line_without_comment, highlighted_line)
-        highlighted_line = highlight_comment(highlighted_line)
-
-        highlighted_code += highlighted_line + '\n'
-
-    return highlighted_code
-
-if __name__ == "__main__":
-    with open('MinimaxExampleCode/minimaxExample.pt', 'r') as file:
-        code = file.read()
-    highlighted_code = syntax_highlight(code)
-    print(highlighted_code)
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
