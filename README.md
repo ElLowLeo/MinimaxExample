@@ -1,4 +1,6 @@
 # MinimaxExample
+_O projeto é fácil de entender para iniciantes em programação que entendem um pouco de lógica. Apesar disso, é melhor ser interpretado por um mentor._
+
 This is an educational version of ![TicTacToeAI](https://codeberg.org/LeoPato/TicTacToeAI), i like the concept and created it to learn more about algorithms and share my expertise.
 I'd be pleased if others used it to teach.
 
