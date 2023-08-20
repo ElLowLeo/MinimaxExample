@@ -20,7 +20,8 @@ Enter your choice:
 ```
 Enter 1 to enter the highlighted Portuguese code, or 2 to run the Python version.
 
-## Portuguese version Readme
+## Portuguese README version
+![READMEpt.md](https://codeberg.org/LeoPato/MinimaxExample/src/branch/main/READMEpt.md)
 
 # License
 This code is distributed under the [MIT](https://codeberg.org/LeoPato/MinimaxExample/src/branch/main/LICENSE) license.
