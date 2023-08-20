@@ -1,4 +1,4 @@
-#MinimaxExample
+# MinimaxExample
 Esta é uma versão educacional do ![TicTacToeAI](https://codeberg.org/LeoPato/TicTacToeAI), gostei do conceito e o criei para aprender mais sobre algoritmos e compartilhar meus conhecimentos.
 Eu ficaria satisfeito se outros o usassem para ensinar.
 
@@ -10,7 +10,7 @@ chmod +x executar.sh
 ./run.sh
 ```
 
-## Correndo
+## Executando
 Fiz uma versão em português e outra em inglês, a versão em português é escrita em uma pseudolinguagem semelhante ao portugol, mas com sintaxe semelhante ao Python.
 ```
 [*] Escolha um arquivo para abrir:
